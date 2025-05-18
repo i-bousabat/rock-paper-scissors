@@ -18,14 +18,65 @@ function getComputerChoice() {
 }
 
 function getHumanChoice(){
-    choice = window.prompt("rock, paper or scissors");
+    let choice = window.prompt("rock, paper or scissors");
+    choice = choice.toLowerCase();
     return choice;
 }
 
 function playRound(humanChoice, computerChoice){
-    humanChoice = humanChoice.toLowerCase();
-}
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
 
-playRound(humanSelection, computerSelection);
+    let winner; 
+    //if both same its a tie
+    if (humanChoice === computerChoice){
+        console.log("its a tie")
+        winner = "tie";
+    }
+
+    //not tie
+    else{
+        if (computerChoice === 'rock' && humanChoice === "paper"){
+            winner = "human";
+            console.log("compter chose rock and you chose paper, you win");
+
+        }else if (computerChoice === 'rock' && humanChoice === "scissors"){
+            winner = "computer";
+            console.log("compter chose rock and you chose scissors, you lose");
+
+        }else if (computerChoice === 'paper' && humanChoice === "rock"){
+            winner = "computer";
+            console.log("compter chose paper and you chose rock, you lose");
+
+        }else if (computerChoice === 'paper' && humanChoice === "scissors"){
+            winner = "human";
+            console.log("compter chose paper and you chose scissors, you win");
+
+        }else if (computerChoice === 'scissors' && humanChoice === "rock"){
+            winner = "human";
+            console.log("compter chose scissors and you chose rock, you win");
+
+        }else if (computerChoice === 'scissors' && humanChoice === "paper"){
+            winner = "computer";
+            console.log("compter chose scissors and you chose paper, you win");    
+        }
+    }
+    
+    if (winner === "human"){
+        humanScore += 1;
+    }else if (winner === "computer"){
+        computerScore += 1;
+    }// if winner === "tie" neither score changes
+}
+
+
+
+function playGame(){
+    for(let i = 1; i <= 5; i++){
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        playRound(humanSelection, computerSelection);
+
+    }
+    console.log(`comutper has won ${computerScore} times and you have have won ${humanScore} times`)
+}
+
+playGame();
