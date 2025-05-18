@@ -36,34 +36,30 @@ function playRound(humanChoice, computerChoice){
     else{
         if (computerChoice === 'rock' && humanChoice === "paper"){
             winner = "human";
-            console.log("compter chose rock and you chose paper, you win");
-
+            
         }else if (computerChoice === 'rock' && humanChoice === "scissors"){
             winner = "computer";
-            console.log("compter chose rock and you chose scissors, you lose");
 
         }else if (computerChoice === 'paper' && humanChoice === "rock"){
             winner = "computer";
-            console.log("compter chose paper and you chose rock, you lose");
 
         }else if (computerChoice === 'paper' && humanChoice === "scissors"){
             winner = "human";
-            console.log("compter chose paper and you chose scissors, you win");
 
         }else if (computerChoice === 'scissors' && humanChoice === "rock"){
             winner = "human";
-            console.log("compter chose scissors and you chose rock, you win");
 
         }else if (computerChoice === 'scissors' && humanChoice === "paper"){
-            winner = "computer";
-            console.log("compter chose scissors and you chose paper, you win");    
+            winner = "computer";   
         }
     }
     
     if (winner === "human"){
         humanScore += 1;
+        console.log(`computer chose ${computerChoice} and you chose ${humanChoice}, you win!`);
     }else if (winner === "computer"){
         computerScore += 1;
+        console.log(`computer chose ${computerChoice} and you chose ${humanChoice}, you lose!`);
     }// if winner === "tie" neither score changes
 }
 
