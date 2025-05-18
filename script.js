@@ -76,7 +76,8 @@ function playGame(){
         playRound(humanSelection, computerSelection);
 
     }
-    console.log(`comutper has won ${computerScore} times and you have have won ${humanScore} times`)
+    let ties = 5 - computerScore - humanScore;
+    console.log(`comutper has won ${computerScore} time(s) and you have have won ${humanScore} time(s), there were ${ties} tie(s)`)
 }
 
 playGame();
