@@ -1,5 +1,7 @@
+let rounds = 0;
 let humanScore = 0;
 let computerScore = 0;
+let ties = 0;
 
 function getComputerChoice() {
     let rand = Math.random();
@@ -17,19 +19,12 @@ function getComputerChoice() {
     return choice;
 }
 
-function getHumanChoice(){
-    let choice = window.prompt("rock, paper or scissors");
-    choice = choice.toLowerCase();
-    return choice;
-}
-
 function playRound(humanChoice, computerChoice){
 
     let winner; 
     //if both same its a tie
     if (humanChoice === computerChoice){
-        console.log("its a tie")
-        winner = "tie";
+        ties += 1;
     }
 
     //not tie
@@ -59,21 +54,45 @@ function playRound(humanChoice, computerChoice){
         console.log(`computer chose ${computerChoice} and you chose ${humanChoice}, you win!`);
     }else if (winner === "computer"){
         computerScore += 1;
-        console.log(`computer chose ${computerChoice} and you chose ${humanChoice}, you lose!`);
-    }// if winner === "tie" neither score changes
-}
-
-
-
-function playGame(){
-    for(let i = 1; i <= 5; i++){
-        const humanSelection = getHumanChoice();
-        const computerSelection = getComputerChoice();
-        playRound(humanSelection, computerSelection);
-
+    }else {
+        console.log('Its a tie!');
     }
-    let ties = 5 - computerScore - humanScore;
-    console.log(`comutper has won ${computerScore} time(s) and you have have won ${humanScore} time(s), there were ${ties} tie(s)`)
+    rounds += 1;
 }
+let options = document.querySelector('#options');
+let stats = document.querySelector('#stats');
+let current = document.querySelector('#current');
+let roundsPlayed = document.querySelector('#rounds');
+let gameOver = document.querySelector('#gameOver');
 
-playGame();
+options.addEventListener('click', (e) => {
+    let target = e.target;
+    const computerChoice = getComputerChoice();
+    
+    switch (target.id) {
+
+        case 'rock':
+            //alert("rock");
+            playRound('rock', computerChoice);
+            break;
+        
+        case 'paper':
+            //alert('paper');
+            playRound('paper', computerChoice);
+            break;
+        
+        case 'scissors':
+            //alert('scissors');
+            playRound('scissors',computerChoice);
+            break;
+    }
+    roundsPlayed.textContent = `Rounds played: ${rounds}`;
+    current.textContent = `You chose: ${target.id} || Computer chose: ${computerChoice}`;
+    stats.textContent = `Wins: ${humanScore} || Losses: ${computerScore} || Ties: ${ties}`;
+    
+    if (humanScore === 5 || computerScore === 5){
+         humanScore > computerScore ? gameOver.textContent = "GAME OVER YOU WIN" : gameOver.textContent = "GAME OVER YOU LOSE"; 
+    } 
+});
+
+

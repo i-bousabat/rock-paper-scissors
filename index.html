@@ -4,8 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock Paper Scissors</title>
+    <script src="script.js" defer></script>
 </head>
 <body>
-    <script src="./script.js"></script>
+
+<!-- could have used appendchild on JS with some of these -->
+    <div id="beforeWin"> Its you vs. the computer. First to win 5 rounds wins the game.</div>
+    <div>Chose your weapon:</div>    
+    <div id="options">
+        <button id="rock">ROCK</button>
+        <button id="paper">PAPER</button>
+        <button id="scissors">SCISSORS</button>
+    </div>
+    <div id="rounds">Rounds played: 0</div>
+    <div id="current"></div>
+    <div id="stats">Wins: 0 || Losses: 0 || Ties: 0</div>
+    <div id="gameOver"></div>
 </body>
 </html>
